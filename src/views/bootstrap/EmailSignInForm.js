@@ -77,11 +77,11 @@ class EmailSignInForm extends React.Component {
         <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                       type="submit"
                       icon={<Glyphicon glyph="log-in" />}
-                      className='email-sign-in-submit pull-right'
+                      className='email-sign-in-submit pull-right danger'
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
                       {...this.props.inputProps.submit}>
-          Sign In
+          Inicia sesión
         </ButtonLoader>
       </form>
     );
