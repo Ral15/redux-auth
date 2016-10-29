@@ -67,7 +67,7 @@ class EmailSignInForm extends React.Component {
     let disabled = (
       this.props.auth.getIn(["user", "isSignedIn"]) ||
       this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"]) ||
-      this.state.validUser || this.state.validPass
+      !this.state.validUser || !this.state.validPass
     );
 
     return (
