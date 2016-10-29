@@ -57,7 +57,7 @@ class EmailSignInForm extends React.Component {
         <Input type="text"
                groupClassName="email-sign-in-email"
                label="Correo electrónico"
-               placeholder="Email"
+               placeholder=""
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
                errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
@@ -67,7 +67,7 @@ class EmailSignInForm extends React.Component {
         <Input type="password"
                label="Contraseña"
                groupClassName="email-sign-in-password"
-               placeholder="Password"
+               placeholder=""
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"])}
                errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "password"])}
@@ -77,7 +77,7 @@ class EmailSignInForm extends React.Component {
         <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                       type="submit"
                       icon={<Glyphicon glyph="log-in" />}
-                      className='email-sign-in-submit pull-right danger'
+                      className='email-sign-in-submit btn-danger btn-block'
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
                       {...this.props.inputProps.submit}>
