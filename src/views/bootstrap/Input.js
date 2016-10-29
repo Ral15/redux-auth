@@ -35,7 +35,7 @@ class AuthInput extends React.Component {
                              left: 0,
                              top: 2
                            }}
-                /> {this.props.label} {err}
+                /> {err}
               </p>
             );
           })}

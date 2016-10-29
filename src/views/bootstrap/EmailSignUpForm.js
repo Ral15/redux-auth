@@ -10,34 +10,27 @@ class EmailSignUpForm extends React.Component {
     endpoint: PropTypes.string,
     next: PropTypes.func,
     inputProps: PropTypes.shape({
-      firstName: PropTypes.object,
-      lastName: PropTypes.object,
+      first_name: PropTypes.object,
+      last_name: PropTypes.object,
       phone: PropTypes.object,
       email: PropTypes.object,
       password: PropTypes.object,
-      passwordConfirmation: PropTypes.object,
-      companyName: PropTypes.object,
+      password_confirmation: PropTypes.object,
+      company_name: PropTypes.object,
       submit: PropTypes.object
     })
   };
 
-  // first_name" : "Jorge Luis",
-  //   "last_name" : "González Sánchez",
-  //   "phone" :   "4771180440",
-  //   "email" : "andreetoledo22@mienvio.mx",
-  //   "password" : "dev@mienvio.mx",
-  //   "password_confirmation" : "dev@mienvio.mx",
-  //   "company_name" : "mienvio"
 
   static defaultProps = {
     next: () => {},
     inputProps: {
-      lastName: {},
-      firstName: {},
+      last_name: {},
+      first_name: {},
       phone: {},
       email: {},
       password: {},
-      companyName: {},
+      company_name: {},
       submit: {}
     }
   };
@@ -57,6 +50,7 @@ class EmailSignUpForm extends React.Component {
   handleSubmit (event) {
     event.preventDefault();
     let formData = this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form"]).toJS();
+    console.log(formData)
     this.props.dispatch(emailSignUp(formData, this.getEndpoint()))
       .then(this.props.next)
       .catch(() => {});
@@ -75,36 +69,25 @@ class EmailSignUpForm extends React.Component {
           <Input type="text"
                label="Nombre*"
                placeholder=""
-               groupClassName="email-sign-up-firstName"
+               groupClassName="email-sign-up-first_name"
                disabled={disabled}
-               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "firstName"])}
-               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "firstName"])}
-               onChange={this.handleInput.bind(this, "firstName")}
-               {...this.props.inputProps.firstName} />
+               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "first_name"])}
+               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "first_name"])}
+               onChange={this.handleInput.bind(this, "first_name")}
+               {...this.props.inputProps.first_name} />
         </div>
         <div className="col-md-6">
           <Input type="text"
                label="Apellidos*"
                placeholder=""
-               groupClassName="email-sign-up-lastName"
+               groupClassName="email-sign-up-last_name"
                disabled={disabled}
-               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "lastName"])}
-               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "lastName"])}
-               onChange={this.handleInput.bind(this, "lastName")}
-               {...this.props.inputProps.lastName} />
+               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "last_name"])}
+               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "last_name"])}
+               onChange={this.handleInput.bind(this, "last_name")}
+               {...this.props.inputProps.last_name} />
         </div>
-        <div className="col-md-6">
-          <Input type="text"
-               label="Empresa"
-               placeholder=""
-               groupClassName="email-sign-up-companyName"
-               disabled={disabled}
-               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "companyName"])}
-               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "companyName"])}
-               onChange={this.handleInput.bind(this, "companyName")}
-               {...this.props.inputProps.companyName} />
-        </div>
-        <div className="col-md-6">
+        <div className="col-md-12">
           <Input type="text"
                label="Correo electrónico*"
                placeholder=""
@@ -116,8 +99,30 @@ class EmailSignUpForm extends React.Component {
                {...this.props.inputProps.email} />
         </div>
         <div className="col-md-6">
+          <Input type="text"
+               label="Empresa"
+               placeholder=""
+               groupClassName="email-sign-up-company_name"
+               disabled={disabled}
+               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "company_name"])}
+               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "company_name"])}
+               onChange={this.handleInput.bind(this, "company_name")}
+               {...this.props.inputProps.company_name} />
+        </div>
+        <div className="col-md-6">
+          <Input type="tel"
+               label="Telefono*"
+               placeholder=""
+               groupClassName="email-sign-up-company_name"
+               disabled={disabled}
+               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "company_name"])}
+               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "company_name"])}
+               onChange={this.handleInput.bind(this, "company_name")}
+               {...this.props.inputProps.company_name} />
+        </div>
+        <div className="col-md-6">
           <Input type="password"
-               label="Contraseña"
+               label="Contraseña*"
                placeholder=""
                groupClassName="email-sign-up-password"
                disabled={disabled}
@@ -128,16 +133,16 @@ class EmailSignUpForm extends React.Component {
         </div>
         <div className="col-md-6">
           <Input type="password"
-               label="Confirmar contraseña"
+               label="Confirmar contraseña*"
                placeholder=""
                groupClassName="email-sign-up-password-confirmation"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password_confirmation"])}
                onChange={this.handleInput.bind(this, "password_confirmation")}
-               {...this.props.inputProps.passwordConfirmation} />
+               {...this.props.inputProps.password_confirmation} />
         </div>
-        <div className="col-md-10 col-md-offset-1">
+        <div className="col-xs-12">
           <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
                         type="submit"
                         className="email-sign-up-submit btn-block btn-danger"
