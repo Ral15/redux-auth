@@ -6,15 +6,11 @@ import { Glyphicon } from "react-bootstrap";
 import { connect } from "react-redux";
 
 class EmailSignInForm extends React.Component {
-  getInitialState() {
-    return {
-      validUser: false,
-      validPass: false
-    }
-  }
   static propTypes = {
     endpoint: PropTypes.string,
     next: PropTypes.func,
+    validUser: PropTypes.boolean,
+    validPass: PropTypes.boolean,
     inputProps: PropTypes.shape({
       email: PropTypes.object,
       password: PropTypes.object,
@@ -27,7 +23,9 @@ class EmailSignInForm extends React.Component {
     inputProps: {
       email: {},
       password: {},
-      submit: {}
+      submit: {},
+      validUser: false,
+      validPass: false
     }
   };
 
@@ -38,6 +36,11 @@ class EmailSignInForm extends React.Component {
       this.props.auth.getIn(["configure", "defaultEndpointKey"])
     );
   }
+
+  state = {
+    validUser: this.props.validUser,
+    validPass: this.props.validPass
+  };
 
   handleInput (key, val) {
     if (key === "email") {
