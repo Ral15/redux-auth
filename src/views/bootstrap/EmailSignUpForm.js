@@ -75,20 +75,20 @@ class EmailSignUpForm extends React.Component {
     let email_reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
     let phone_reg = /[0-9:]{10}/g 
     if (key === "first_name") {
-      if (name_reg.match(val)) this.setState({ validFirst: true })
+      if (name_reg.test(val)) this.setState({ validFirst: true })
       else this.setState({ validFirst: false })
     }
     else if (key === "last_name") {
-      if (name_reg.match(val)) this.setState({ validLast: true  })
+      if (name_reg.test(val)) this.setState({ validLast: true  })
       else this.setState({ validLast: false })
     }
     else if (key === "email") {
-      if (email_reg.match(val)) this.setState({ validEmail: true })
+      if (email_reg.test(val)) this.setState({ validEmail: true })
       else this.setState({ validEmail: false  })
     }
     else if (key === "phone") {
       val.replace(/-/g, '')
-      if (phone_reg.match(val)) this.setState({  validPhone: true  })
+      if (phone_reg.test(val)) this.setState({  validPhone: true  })
       else this.setState({ validPhone: false  })
     }
     else if (key == "password") {
