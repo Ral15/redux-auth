@@ -11,10 +11,17 @@ export const EMAIL_SIGN_IN_START       = "EMAIL_SIGN_IN_START";
 export const EMAIL_SIGN_IN_COMPLETE    = "EMAIL_SIGN_IN_COMPLETE";
 export const EMAIL_SIGN_IN_ERROR       = "EMAIL_SIGN_IN_ERROR";
 export const EMAIL_SIGN_IN_FORM_UPDATE = "EMAIL_SIGN_IN_FORM_UPDATE";
+export const EMAIL_SIGN_IN_FORM_UPDATE_VALIDATION = "EMAIL_SIGN_IN_FORM_UPDATE_VALIDATION";
+
 
 export function emailSignInFormUpdate(endpoint, key, value) {
   return { type: EMAIL_SIGN_IN_FORM_UPDATE, endpoint, key, value };
 }
+
+export function emailSignInFormUpdateValidation(endpoint, key, value) {
+  return { type: EMAIL_SIGN_IN_FORM_UPDATE_VALIDATION,endpoint, key, value };
+}
+
 export function emailSignInStart(endpoint) {
   return { type: EMAIL_SIGN_IN_START, endpoint };
 }

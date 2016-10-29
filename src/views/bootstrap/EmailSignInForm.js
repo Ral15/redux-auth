@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 import ButtonLoader from "./ButtonLoader";
 import Input from "./Input";
-import { emailSignInFormUpdate, emailSignIn } from "../../actions/email-sign-in";
+import { emailSignInFormUpdate, emailSignIn, emailSignInFormUpdateValidation } from "../../actions/email-sign-in";
 import { Glyphicon } from "react-bootstrap";
 import { connect } from "react-redux";
 
@@ -39,24 +39,24 @@ class EmailSignInForm extends React.Component {
     );
   }
 
-  state = {
-    validLogIn: this.props.validLogIn, 
-    validUser: this.props.validUser,
-    validPass: this.props.validPass,
-  };
+  // state = {
+  //   validLogIn: this.props.validLogIn, 
+  //   validUser: this.props.validUser,
+  //   validPass: this.props.validPass,
+  // };
 
   handleInput (key, val) {
     if (key === "email") {
       const reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
-      if (reg.test(val)) this.setState({ validUser: true })
-      else this.setState({ validUser: false })
+      if (reg.test(val)) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validUser", true));
+      else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validUser", false));
     }
     else if (key == "password") {
-      if (val.length < 8) this.setState({ validPass: false })
-      else this.setState({ validPass: true })
+      if (val.length < 8) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", false));
+      else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", true));
     }
-    if (this.state.validPass && this.state.validUser) this.setState({ validLogIn: true })
-    else this.setState({ validLogIn: false })
+    if (this.props.validPass && this.props.validUser) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", true));
+    else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", false));
     this.props.dispatch(emailSignInFormUpdate(this.getEndpoint(), key, val));
   }
 
@@ -105,7 +105,7 @@ class EmailSignInForm extends React.Component {
                 icon={<Glyphicon glyph="log-in" />}
                 className='email-sign-in-submit btn-danger btn-block'
                 disabled={disabled}
-                disabledAux={this.state.validLogIn}
+                disabledAux={this.props.validLogIn}
                 onClick={this.handleSubmit.bind(this)}
                 {...this.props.inputProps.submit}>
             Inicia sesión
