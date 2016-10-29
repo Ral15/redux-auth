@@ -9,6 +9,7 @@ class EmailSignInForm extends React.Component {
   static propTypes = {
     endpoint: PropTypes.string,
     next: PropTypes.func,
+    validLogIn: PropTypes.boolean, 
     validUser: PropTypes.boolean,
     validPass: PropTypes.boolean,
     inputProps: PropTypes.shape({
@@ -24,9 +25,10 @@ class EmailSignInForm extends React.Component {
       email: {},
       password: {},
       submit: {},
-      validUser: false,
-      validPass: false
-    }
+    },
+    validLogIn: false, 
+    validUser: false,
+    validPass: false,
   };
 
   getEndpoint () {
@@ -38,8 +40,9 @@ class EmailSignInForm extends React.Component {
   }
 
   state = {
+    validLogIn: this.props.validLogIn, 
     validUser: this.props.validUser,
-    validPass: this.props.validPass
+    validPass: this.props.validPass,
   };
 
   handleInput (key, val) {
@@ -48,10 +51,12 @@ class EmailSignInForm extends React.Component {
       if (reg.test(val)) this.setState({ validUser: true })
       else this.setState({ validUser: false })
     }
-    if (key == "password") {
+    else if (key == "password") {
       if (val.length < 8) this.setState({ validPass: false })
       else this.setState({ validPass: true })
     }
+    if (this.state.validPass && this.state.validUser) this.setState({ validLogIn: true })
+    else this.setState({ validLogIn: false })
     this.props.dispatch(emailSignInFormUpdate(this.getEndpoint(), key, val));
   }
 
@@ -100,8 +105,7 @@ class EmailSignInForm extends React.Component {
                 icon={<Glyphicon glyph="log-in" />}
                 className='email-sign-in-submit btn-danger btn-block'
                 disabled={disabled}
-                validUser={this.state.validUser}
-                validPass={this.state.validPass}
+                disabledAux={this.state.validLogIn}
                 onClick={this.handleSubmit.bind(this)}
                 {...this.props.inputProps.submit}>
             Inicia sesión

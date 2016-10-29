@@ -9,6 +9,14 @@ class EmailSignUpForm extends React.Component {
   static propTypes = {
     endpoint: PropTypes.string,
     next: PropTypes.func,
+    validSignUp: PropTypes.boolean,
+    validFirst: PropTypes.boolean,
+    validLast: PropTypes.boolean,
+    validEmail: PropTypes.boolean,
+    validCompany: PropTypes.boolean,
+    validPhone: PropTypes.boolean,
+    validPass: PropTypes.boolean,
+    validConfirmPass: PropTypes.boolean,
     inputProps: PropTypes.shape({
       first_name: PropTypes.object,
       last_name: PropTypes.object,
@@ -24,6 +32,14 @@ class EmailSignUpForm extends React.Component {
 
   static defaultProps = {
     next: () => {},
+    validSignUp: false,
+    validFirst: false,
+    validLast: false,
+    validEmail: false,
+    validCompany: false,
+    validPhone: false,
+    validPass: false,
+    validConfirmPass: false,
     inputProps: {
       last_name: {},
       first_name: {},
@@ -35,6 +51,17 @@ class EmailSignUpForm extends React.Component {
     }
   };
 
+  state = {
+    validSignUp: this.props.validSignUp,
+    validFirst: this.props.validFirst,
+    validLast: this.props.validLast,
+    validEmail: this.props.validEmail,
+    validCompany: this.props.validCompany,
+    validPhone: this.props.validPhone,
+    validPass: this.props.validPass,
+    validConfirmPass: this.props.validConfirmPass
+  };
+
   getEndpoint () {
     return (
       this.props.endpoint ||
@@ -44,8 +71,38 @@ class EmailSignUpForm extends React.Component {
   }
 
   handleInput (key, val) {
-    console.log(key + ' ' + val)
-    if (key === "first_name") alert('huhhuu')
+    let name_reg = /^([ \u00c0-\u01ffa-zA-Z'\-])+$/g
+    let email_reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+    let phone_reg = /[0-9:]{10}/g 
+    if (key === "first_name") {
+      if (name_reg.match(val)) this.setState({ validFirst: true })
+      else this.setState({ validFirst: false })
+    }
+    else if (key === "last_name") {
+      if (name_reg.match(val)) this.setState({ validLast: true  })
+      else this.setState({ validLast: false })
+    }
+    else if (key === "email") {
+      if (email_reg.match(val)) this.setState({ validEmail: true })
+      else this.setState({ validEmail: false  })
+    }
+    else if (key === "phone") {
+      val.replace(/-/g, '')
+      if (phone_reg.match(val)) this.setState({  validPhone: true  })
+      else this.setState({ validPhone: false  })
+    }
+    else if (key == "password") {
+      if (val.length < 8) this.setState({ validPass: false  })
+      else this.setState({ validPass: true  })
+    }
+    else if (key == "password_confirmation") {
+      if (val != this.props.inputProps.password) this.setState({  validConfirmPass: false  })
+      else this.setState({ validConfirmPass: true })
+    }
+    if (this.state.validFirst && this.state.validLast && this.state.validEmail && this.state.validPhone && this.state.validPass && this.state.validConfirmPass) {
+      this.setState({ validSignUp: true })
+    }
+    else this.setState({ validSignUp: false })
     this.props.dispatch(emailSignUpFormUpdate(this.getEndpoint(), key, val));
   }
 
@@ -150,6 +207,7 @@ class EmailSignUpForm extends React.Component {
                         className="email-sign-up-submit btn-block btn-danger"
                         icon={<Glyphicon glyph="send" />}
                         disabled={disabled}
+                        disabledAux={this.state.validSignUp}
                         onClick={this.handleSubmit.bind(this)}
                         {...this.props.inputProps.submit}>
             Regístrate
