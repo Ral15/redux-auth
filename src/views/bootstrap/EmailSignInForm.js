@@ -56,7 +56,7 @@ class EmailSignInForm extends React.Component {
             onSubmit={this.handleSubmit.bind(this)}>
         <Input type="text"
                groupClassName="email-sign-in-email"
-               label="Email"
+               label="Correo electrónico"
                placeholder="Email"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
@@ -65,7 +65,7 @@ class EmailSignInForm extends React.Component {
                {...this.props.inputProps.email} />
 
         <Input type="password"
-               label="Password"
+               label="Contraseña"
                groupClassName="email-sign-in-password"
                placeholder="Password"
                disabled={disabled}

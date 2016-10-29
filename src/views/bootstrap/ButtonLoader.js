@@ -70,7 +70,7 @@ class ButtonLoader extends React.Component {
         type={this.props.type}
         style={this.props.style}
         bsSize={this.props.bsSize}>
-        {this.props.children}
+        {this.renderIcon()} {this.props.children}
       </Button>
     );
   }
