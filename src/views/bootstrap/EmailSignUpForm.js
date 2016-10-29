@@ -113,12 +113,12 @@ class EmailSignUpForm extends React.Component {
           <Input type="tel"
                label="Telefono*"
                placeholder=""
-               groupClassName="email-sign-up-company_name"
+               groupClassName="email-sign-up-phone"
                disabled={disabled}
-               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "company_name"])}
-               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "company_name"])}
-               onChange={this.handleInput.bind(this, "company_name")}
-               {...this.props.inputProps.company_name} />
+               value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "phone"])}
+               errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "phone"])}
+               onChange={this.handleInput.bind(this, "phone")}
+               {...this.props.inputProps.phone} />
         </div>
         <div className="col-md-6">
           <Input type="password"
