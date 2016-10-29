@@ -137,16 +137,17 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "password_confirmation")}
                {...this.props.inputProps.passwordConfirmation} />
         </div>
-
-        <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
-                      type="submit"
-                      className="email-sign-up-submit btn-block btn-danger"
-                      icon={<Glyphicon glyph="send" />}
-                      disabled={disabled}
-                      onClick={this.handleSubmit.bind(this)}
-                      {...this.props.inputProps.submit}>
-          Regístrate
-        </ButtonLoader>
+        <div className="col-md-10 col-md-offset-1">
+          <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
+                        type="submit"
+                        className="email-sign-up-submit btn-block btn-danger"
+                        icon={<Glyphicon glyph="send" />}
+                        disabled={disabled}
+                        onClick={this.handleSubmit.bind(this)}
+                        {...this.props.inputProps.submit}>
+            Regístrate
+          </ButtonLoader>
+        </div>
       </form>
     );
   }
