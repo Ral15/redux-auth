@@ -54,35 +54,39 @@ class EmailSignInForm extends React.Component {
     return (
       <form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <Input type="text"
-               groupClassName="email-sign-in-email"
-               label="Correo electrónico"
-               placeholder=""
-               disabled={disabled}
-               value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
-               errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
-               onChange={this.handleInput.bind(this, "email")}
-               {...this.props.inputProps.email} />
-
-        <Input type="password"
-               label="Contraseña"
-               groupClassName="email-sign-in-password"
-               placeholder=""
-               disabled={disabled}
-               value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"])}
-               errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "password"])}
-               onChange={this.handleInput.bind(this, "password")}
-               {...this.props.inputProps.password} />
-
-        <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
-                      type="submit"
-                      icon={<Glyphicon glyph="log-in" />}
-                      className='email-sign-in-submit btn-danger btn-block'
-                      disabled={disabled}
-                      onClick={this.handleSubmit.bind(this)}
-                      {...this.props.inputProps.submit}>
-          Inicia sesión
-        </ButtonLoader>
+        <div className="col-md-10 col-md-offset-1">
+          <Input type="text"
+                 groupClassName="email-sign-in-email"
+                 label="Correo electrónico"
+                 placeholder=""
+                 disabled={disabled}
+                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
+                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
+                 onChange={this.handleInput.bind(this, "email")}
+                 {...this.props.inputProps.email} />
+        </div>
+        <div className="col-md-10 col-md-offset-1">
+          <Input type="password"
+                 label="Contraseña"
+                 groupClassName="email-sign-in-password"
+                 placeholder=""
+                 disabled={disabled}
+                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"])}
+                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "password"])}
+                 onChange={this.handleInput.bind(this, "password")}
+                 {...this.props.inputProps.password} />
+        </div>
+        <div className="col-md-10 col-md-offset-1">
+          <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
+                        type="submit"
+                        icon={<Glyphicon glyph="log-in" />}
+                        className='email-sign-in-submit btn-danger btn-block'
+                        disabled={disabled}
+                        onClick={this.handleSubmit.bind(this)}
+                        {...this.props.inputProps.submit}>
+            Inicia sesión
+          </ButtonLoader>
+        </div>
       </form>
     );
   }

@@ -118,7 +118,7 @@ class EmailSignUpForm extends React.Component {
         <div className="col-md-6">
           <Input type="password"
                label="Contraseña"
-               placeholder="Password"
+               placeholder=""
                groupClassName="email-sign-up-password"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])}
@@ -129,7 +129,7 @@ class EmailSignUpForm extends React.Component {
         <div className="col-md-6">
           <Input type="password"
                label="Confirmar contraseña"
-               placeholder="Password Confirmation"
+               placeholder=""
                groupClassName="email-sign-up-password-confirmation"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
