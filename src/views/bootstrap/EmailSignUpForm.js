@@ -71,7 +71,8 @@ class EmailSignUpForm extends React.Component {
     return (
       <form className='redux-auth email-sign-up-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-         <Input type="text"
+        <div className="col-md-6">
+          <Input type="text"
                label="Nombre*"
                placeholder=""
                groupClassName="email-sign-up-firstName"
@@ -89,6 +90,8 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "lastName"])}
                onChange={this.handleInput.bind(this, "lastName")}
                {...this.props.inputProps.lastName} />
+        </div>
+        <div className="col-md-6">
           <Input type="text"
                label="Empresa"
                placeholder=""
@@ -99,7 +102,7 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "companyName")}
                {...this.props.inputProps.companyName} />
 
-        <Input type="text"
+          <Input type="text"
                label="Correo electrónico*"
                placeholder=""
                groupClassName="email-sign-up-email"
@@ -108,8 +111,9 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "email"])}
                onChange={this.handleInput.bind(this, "email")}
                {...this.props.inputProps.email} />
-
-        <Input type="password"
+        </div>
+        <div className="col-md-6">
+          <Input type="password"
                label="Contraseña"
                placeholder="Password"
                groupClassName="email-sign-up-password"
@@ -118,8 +122,7 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password"])}
                onChange={this.handleInput.bind(this, "password")}
                {...this.props.inputProps.password} />
-
-        <Input type="password"
+          <Input type="password"
                label="Confirmar contraseña"
                placeholder="Password Confirmation"
                groupClassName="email-sign-up-password-confirmation"
@@ -128,11 +131,11 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password_confirmation"])}
                onChange={this.handleInput.bind(this, "password_confirmation")}
                {...this.props.inputProps.passwordConfirmation} />
-
+        </div>
 
         <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
                       type="submit"
-                      className="email-sign-up-submit btn-block"
+                      className="email-sign-up-submit btn-block btn-danger"
                       icon={<Glyphicon glyph="send" />}
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
