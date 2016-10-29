@@ -81,6 +81,8 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "firstName"])}
                onChange={this.handleInput.bind(this, "firstName")}
                {...this.props.inputProps.firstName} />
+        </div>
+        <div className="col-md-6">
           <Input type="text"
                label="Apellidos*"
                placeholder=""
@@ -101,7 +103,8 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "companyName"])}
                onChange={this.handleInput.bind(this, "companyName")}
                {...this.props.inputProps.companyName} />
-
+        </div>
+        <div className="col-md-6">
           <Input type="text"
                label="Correo electrónico*"
                placeholder=""
@@ -122,6 +125,8 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password"])}
                onChange={this.handleInput.bind(this, "password")}
                {...this.props.inputProps.password} />
+        </div>
+        <div className="col-md-6">
           <Input type="password"
                label="Confirmar contraseña"
                placeholder="Password Confirmation"
