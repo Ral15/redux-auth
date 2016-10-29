@@ -33,7 +33,7 @@ export const authStateReducer = combineReducers({
 /* actions */
 export {configure} from "./actions/configure";
 export {authenticate} from "./actions/authenticate";
-export {emailSignIn, emailSignInFormUpdate} from "./actions/email-sign-in";
+export {emailSignIn, emailSignInFormUpdate, emailSignInFormUpdateValidation } from "./actions/email-sign-in";
 export {signOut} from "./actions/sign-out";
 export {emailSignUp, emailSignUpFormUpdate} from "./actions/email-sign-up";
 export {oAuthSignIn} from "./actions/oauth-sign-in";
