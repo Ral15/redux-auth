@@ -54,6 +54,7 @@ class BaseModal extends React.Component {
         <Modal.Footer>
           <Button
             onClick={this.close.bind(this)}
+            bsStyle="danger"
             className={`${this.props.containerClass}-close`}>
             {this.props.closeBtnLabel}
           </Button>
