@@ -42,12 +42,12 @@ class EmailSignInForm extends React.Component {
   handleInput (key, val) {
     if (key === "email") {
       const reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
-      if (reg.test(val)) setState({ validUser: true })
-      else setState({ validUser: false })
+      if (reg.test(val)) this.setState({ validUser: true })
+      else this.setState({ validUser: false })
     }
     if (key == "password") {
-      if (val.length < 8) setState({ validPass: false })
-      else setState({ validPass: true })
+      if (val.length < 8) this.setState({ validPass: false })
+      else this.setState({ validPass: true })
     }
     this.props.dispatch(emailSignInFormUpdate(this.getEndpoint(), key, val));
   }
