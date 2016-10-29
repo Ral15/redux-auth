@@ -56,7 +56,7 @@ class EmailSignInForm extends React.Component {
             onSubmit={this.handleSubmit.bind(this)}>
         <Input type="text"
                groupClassName="email-sign-in-email"
-               label="ico"
+               label="Correo electrónico"
                placeholder=""
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}

@@ -110,7 +110,7 @@ class EmailSignUpForm extends React.Component {
                {...this.props.inputProps.email} />
 
         <Input type="password"
-               label="Password"
+               label="Contraseña"
                placeholder="Password"
                groupClassName="email-sign-up-password"
                disabled={disabled}
@@ -120,7 +120,7 @@ class EmailSignUpForm extends React.Component {
                {...this.props.inputProps.password} />
 
         <Input type="password"
-               label="Password Confirmation"
+               label="Confirmar contraseña"
                placeholder="Password Confirmation"
                groupClassName="email-sign-up-password-confirmation"
                disabled={disabled}
