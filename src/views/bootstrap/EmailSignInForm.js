@@ -66,8 +66,7 @@ class EmailSignInForm extends React.Component {
   render () {
     let disabled = (
       this.props.auth.getIn(["user", "isSignedIn"]) ||
-      this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"]) ||
-      !this.state.validUser || !this.state.validPass
+      this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])
     );
 
     return (
@@ -101,6 +100,8 @@ class EmailSignInForm extends React.Component {
                 icon={<Glyphicon glyph="log-in" />}
                 className='email-sign-in-submit btn-danger btn-block'
                 disabled={disabled}
+                validUser={this.state.validUser}
+                validPass={this.state.validPass}
                 onClick={this.handleSubmit.bind(this)}
                 {...this.props.inputProps.submit}>
             Inicia sesión
