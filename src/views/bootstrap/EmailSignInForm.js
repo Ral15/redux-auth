@@ -54,7 +54,7 @@ class EmailSignInForm extends React.Component {
       if (val.length < 8) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", false));
       else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", true));
     }
-    console.log(this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validPass") + " " + this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]))
+    console.log(this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).toJs() + " " + this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]))
     if (this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validPass") && this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validUser")) {
       console.log("entre?")
       this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", true));
