@@ -44,7 +44,7 @@ class EmailSignInForm extends React.Component {
   // };
 
   handleInput (key, val) {
-    let validLogIn = false
+    
     if (key === "email") {
       const reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
       if (reg.test(val)) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validUser", true));
@@ -54,7 +54,8 @@ class EmailSignInForm extends React.Component {
       if (val.length < 8) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", false));
       else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", true));
     }
-    console.log(this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).toJs() + " " + this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]))
+    let validLog = his.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).toJS();
+    console.log(validLog + " " + this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]))
     if (this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validPass") && this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validUser")) {
       console.log("entre?")
       this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", true));
