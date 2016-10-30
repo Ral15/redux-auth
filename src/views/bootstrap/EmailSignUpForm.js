@@ -101,7 +101,7 @@ class EmailSignUpForm extends React.Component {
       .catch(() => {});
   }
 
-  handleBlur(e) {
+  handleBlur(event) {
     const v = this.props.auth
     if (v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validFirstName") &&
         v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validLastName") &&
@@ -133,7 +133,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "first_name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "first_name"])}
                onChange={this.handleInput.bind(this, "first_name")}
-               onBlur={this.handleBlur}
+               onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.first_name} />
         </div>
         <div className="col-md-6">
@@ -145,7 +145,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "last_name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "last_name"])}
                onChange={this.handleInput.bind(this, "last_name")}
-               onBlur={this.handleBlur}
+               onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.last_name} />
         </div>
         <div className="col-md-12">
@@ -157,7 +157,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "email"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "email"])}
                onChange={this.handleInput.bind(this, "email")}
-               onBlur={this.handleBlur}
+               onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.email} />
         </div>
         <div className="col-md-6">
@@ -169,7 +169,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "company_name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "company_name"])}
                onChange={this.handleInput.bind(this, "company_name")}
-               onBlur={this.handleBlur}
+               onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.company_name} />
         </div>
         <div className="col-md-6">
@@ -181,7 +181,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "phone"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "phone"])}
                onChange={this.handleInput.bind(this, "phone")}
-               onBlur={this.handleBlur}
+               onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.phone} />
         </div>
         <div className="col-md-6">
@@ -193,7 +193,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password"])}
                onChange={this.handleInput.bind(this, "password")}
-               onBlur={this.handleBlur}
+               onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.password} />
         </div>
         <div className="col-md-6">
@@ -205,7 +205,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password_confirmation"])}
                onChange={this.handleInput.bind(this, "password_confirmation")}
-               onBlur={this.handleBlur}
+               onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.password_confirmation} />
         </div>
         <div className="col-xs-12">
