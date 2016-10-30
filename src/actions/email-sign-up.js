@@ -21,7 +21,7 @@ export function emailSignUpStart(endpoint) {
   return { type: EMAIL_SIGN_UP_START, endpoint };
 }
 export function emailSignUpComplete(user, endpoint) {
-  console.log(user.user)
+  console.log("This is the answer" + " " + user.user)
   return { type: EMAIL_SIGN_UP_COMPLETE, user, endpoint };
 }
 export function emailSignUpError(errors, endpoint) {
@@ -42,7 +42,7 @@ export function emailSignUp(body, endpointKey) {
       }))
     })
       .then(parseResponse)
-      .then((data.user) => dispatch(emailSignUpComplete(data, endpointKey)))
+      .then((data) => dispatch(emailSignUpComplete(data, endpointKey)))
       .catch(({errors}) => {
         dispatch(emailSignUpError(errors, endpointKey))
         throw errors;
