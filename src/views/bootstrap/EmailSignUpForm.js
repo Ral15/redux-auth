@@ -68,7 +68,7 @@ class EmailSignUpForm extends React.Component {
 
     if (key === "first_name") {
       if (name_reg.test(val)) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validFirstName", true));
-      elsethis.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validFirstName", false));
+      else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validFirstName", false));
     }
     else if (key === "last_name") {
       if (name_reg.test(val)) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validLastName", true));
