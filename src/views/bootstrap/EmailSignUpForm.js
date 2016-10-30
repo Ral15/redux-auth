@@ -130,6 +130,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "first_name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "first_name"])}
                onChange={this.handleInput.bind(this, "first_name")}
+               onBlur={this.handleInput.bind(this, "first_name")}
                {...this.props.inputProps.first_name} />
         </div>
         <div className="col-md-6">
@@ -196,6 +197,7 @@ class EmailSignUpForm extends React.Component {
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password_confirmation"])}
                onChange={this.handleInput.bind(this, "password_confirmation")}
+               onBlur={this.handleInput.bind(this, "password_confirmation")}
                {...this.props.inputProps.password_confirmation} />
         </div>
         <div className="col-xs-12">
