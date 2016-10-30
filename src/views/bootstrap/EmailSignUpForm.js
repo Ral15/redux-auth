@@ -101,7 +101,7 @@ class EmailSignUpForm extends React.Component {
       .catch(() => {});
   }
 
-  handleBlur() {
+  handleBlur(e) {
     const v = this.props.auth
     if (v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validFirstName") &&
         v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validLastName") &&
