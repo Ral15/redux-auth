@@ -9,7 +9,6 @@ class EmailSignUpForm extends React.Component {
   static propTypes = {
     endpoint: PropTypes.string,
     next: PropTypes.func,
-    validSignUp: PropTypes.boolean,
     validFirstName: PropTypes.boolean,
     validLastName: PropTypes.boolean,
     validEmail: PropTypes.boolean,
@@ -32,7 +31,6 @@ class EmailSignUpForm extends React.Component {
 
   static defaultProps = {
     next: () => {},
-    validSignUp: false,
     validFirstName: false,
     validLastName: false,
     validEmail: false,
@@ -84,11 +82,11 @@ class EmailSignUpForm extends React.Component {
       else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPhone", false));
     }
     else if (key == "password") {
-      if (val.length < 8) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", true));
+      if (val.length <= 8) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", true));
       else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", false));
     }
     else if (key == "password_confirmation") {
-      if (val == this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPass")) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validConfirmPass", true));
+      if (val == this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validConfirmPass", true));
       else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validConfirmPass", false));
     }
     const v = this.props.auth
