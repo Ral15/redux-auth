@@ -82,7 +82,7 @@ class EmailSignUpForm extends React.Component {
       else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPhone", false));
     }
     else if (key == "password") {
-      if (val.length <= 8) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", true));
+      if (val.length >= 8) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", true));
       else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", false));
     }
     else if (key == "password_confirmation") {
