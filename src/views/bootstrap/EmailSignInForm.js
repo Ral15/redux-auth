@@ -9,7 +9,6 @@ class EmailSignInForm extends React.Component {
   static propTypes = {
     endpoint: PropTypes.string,
     next: PropTypes.func,
-    validLogIn: PropTypes.boolean, 
     validUser: PropTypes.boolean,
     validPass: PropTypes.boolean,
     inputProps: PropTypes.shape({
@@ -26,7 +25,6 @@ class EmailSignInForm extends React.Component {
       password: {},
       submit: {},
     },
-    validLogIn: false, 
     validUser: false,
     validPass: false,
   };
@@ -46,6 +44,7 @@ class EmailSignInForm extends React.Component {
   // };
 
   handleInput (key, val) {
+    let validLogIn = false
     if (key === "email") {
       const reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
       if (reg.test(val)) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validUser", true));
@@ -55,7 +54,7 @@ class EmailSignInForm extends React.Component {
       if (val.length < 8) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", false));
       else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", true));
     }
-    console.log(this.props.validPass + " " + this.props.validUser)
+    console.log(this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]) + " " + this.props.validUser)
     if (this.props.validPass && this.props.validUser) {
       console.log("entre?")
       this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", true));
