@@ -41,7 +41,8 @@ export function emailSignUp(body, endpointKey) {
       }))
     })
       .then(parseResponse)
-      .then(({data}) => dispatch(emailSignUpComplete(data.user, endpointKey)))
+      console.log(data)
+      .then(({data}) => dispatch(emailSignUpComplete(data, endpointKey)))
       .catch(({errors}) => {
         dispatch(emailSignUpError(errors, endpointKey))
         throw errors;
