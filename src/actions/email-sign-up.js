@@ -7,10 +7,16 @@ export const EMAIL_SIGN_UP_START       = "EMAIL_SIGN_UP_START";
 export const EMAIL_SIGN_UP_COMPLETE    = "EMAIL_SIGN_UP_COMPLETE";
 export const EMAIL_SIGN_UP_ERROR       = "EMAIL_SIGN_UP_ERROR";
 export const EMAIL_SIGN_UP_FORM_UPDATE = "EMAIL_SIGN_UP_FORM_UPDATE";
+export const EMAIL_SIGN_UP_FORM_UPDATE_VALIDATION = "EMAIL_SIGN_UP_FORM_UPDATE_VALIDATION";
 
 export function emailSignUpFormUpdate(endpoint, key, value) {
   return { type: EMAIL_SIGN_UP_FORM_UPDATE, endpoint, key, value };
 }
+
+export function emailSignUpFormUpdateValidation(endpoint, key, value) {
+  return { type: EMAIL_SIGN_UP_FORM_UPDATE_VALIDATION, endpoint, key, value };
+}
+
 export function emailSignUpStart(endpoint) {
   return { type: EMAIL_SIGN_UP_START, endpoint };
 }

@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import Input from "./Input";
 import ButtonLoader from "./ButtonLoader";
-import { emailSignUpFormUpdate, emailSignUp } from "../../actions/email-sign-up";
+import { emailSignUpFormUpdate, emailSignUp, emailSignUpFormUpdateValidation } from "../../actions/email-sign-up";
 import { connect } from "react-redux";
 import { Glyphicon } from "react-bootstrap";
 
@@ -10,8 +10,8 @@ class EmailSignUpForm extends React.Component {
     endpoint: PropTypes.string,
     next: PropTypes.func,
     validSignUp: PropTypes.boolean,
-    validFirst: PropTypes.boolean,
-    validLast: PropTypes.boolean,
+    validFirstName: PropTypes.boolean,
+    validLastName: PropTypes.boolean,
     validEmail: PropTypes.boolean,
     validCompany: PropTypes.boolean,
     validPhone: PropTypes.boolean,
@@ -33,8 +33,8 @@ class EmailSignUpForm extends React.Component {
   static defaultProps = {
     next: () => {},
     validSignUp: false,
-    validFirst: false,
-    validLast: false,
+    validFirstName: false,
+    validLastName: false,
     validEmail: false,
     validCompany: false,
     validPhone: false,
@@ -51,16 +51,6 @@ class EmailSignUpForm extends React.Component {
     }
   };
 
-  state = {
-    validSignUp: this.props.validSignUp,
-    validFirst: this.props.validFirst,
-    validLast: this.props.validLast,
-    validEmail: this.props.validEmail,
-    validCompany: this.props.validCompany,
-    validPhone: this.props.validPhone,
-    validPass: this.props.validPass,
-    validConfirmPass: this.props.validConfirmPass
-  };
 
   getEndpoint () {
     return (
@@ -71,38 +61,47 @@ class EmailSignUpForm extends React.Component {
   }
 
   handleInput (key, val) {
+    //regex
     let name_reg = /^([ \u00c0-\u01ffa-zA-Z'\-])+$/g
     let email_reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
     let phone_reg = /[0-9:]{10}/g 
+
     if (key === "first_name") {
-      if (name_reg.test(val)) this.setState({ validFirst: true })
-      else this.setState({ validFirst: false })
+      if (name_reg.test(val)) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validFirstName", true));
+      elsethis.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validFirstName", false));
     }
     else if (key === "last_name") {
-      if (name_reg.test(val)) this.setState({ validLast: true  })
-      else this.setState({ validLast: false })
+      if (name_reg.test(val)) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validLastName", true));
+      else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validLastName", false));
     }
     else if (key === "email") {
-      if (email_reg.test(val)) this.setState({ validEmail: true })
-      else this.setState({ validEmail: false  })
+      if (email_reg.test(val)) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validEmail", true));
+      else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validEmail", false));
     }
     else if (key === "phone") {
-      val.replace(/-/g, '')
-      if (phone_reg.test(val)) this.setState({  validPhone: true  })
-      else this.setState({ validPhone: false  })
+      // val.replace(/-/g, '')
+      if (phone_reg.test(val)) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPhone", true));
+      else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPhone", false));
     }
     else if (key == "password") {
-      if (val.length < 8) this.setState({ validPass: false  })
-      else this.setState({ validPass: true  })
+      if (val.length < 8) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", true));
+      else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validPass", false));
     }
     else if (key == "password_confirmation") {
-      if (val != this.props.inputProps.password) this.setState({  validConfirmPass: false  })
-      else this.setState({ validConfirmPass: true })
+      if (val == this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPass")) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validConfirmPass", true));
+      else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validConfirmPass", false));
     }
-    if (this.state.validFirst && this.state.validLast && this.state.validEmail && this.state.validPhone && this.state.validPass && this.state.validConfirmPass) {
-      this.setState({ validSignUp: true })
+    const v = this.props.auth
+    if (v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validFirstName") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validLastName") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validEmail") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPhone") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPass") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validConfirmPass")
+        ){
+        this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", true));
     }
-    else this.setState({ validSignUp: false })
+    else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", false));
     this.props.dispatch(emailSignUpFormUpdate(this.getEndpoint(), key, val));
   }
 
@@ -207,7 +206,7 @@ class EmailSignUpForm extends React.Component {
                         className="email-sign-up-submit btn-block btn-danger"
                         icon={<Glyphicon glyph="send" />}
                         disabled={disabled}
-                        disabledAux={this.state.validSignUp}
+                        disabledAux={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validSignUp")}
                         onClick={this.handleSubmit.bind(this)}
                         {...this.props.inputProps.submit}>
             Regístrate

@@ -37,11 +37,6 @@ class EmailSignInForm extends React.Component {
     );
   }
 
-  // state = {
-  //   validLogIn: this.props.validLogIn, 
-  //   validUser: this.props.validUser,
-  //   validPass: this.props.validPass,
-  // };
 
   handleInput (key, val) {
     
@@ -51,7 +46,7 @@ class EmailSignInForm extends React.Component {
       else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validUser", false));
     }
     else if (key == "password") {
-      if (val.length < 8) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", false));
+      if (val.length <= 8) this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", false));
       else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validPass", true));
     }
     if (this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validPass") && this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validUser")) {
@@ -81,7 +76,7 @@ class EmailSignInForm extends React.Component {
         <div className="col-md-10 col-md-offset-1">
           <Input type="text"
                 groupClassName="email-sign-in-email"
-                label="Correo electrónico"
+                label="Correo electrónico*"
                 placeholder="sr.envio@mienvio.mx"
                 disabled={disabled}
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
@@ -91,7 +86,7 @@ class EmailSignInForm extends React.Component {
         </div>
         <div className="col-md-10 col-md-offset-1">
           <Input type="password"
-                label="Contraseña"
+                label="Contraseña*"
                 groupClassName="email-sign-in-password"
                 placeholder="********"
                 disabled={disabled}
