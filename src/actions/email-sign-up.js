@@ -21,7 +21,6 @@ export function emailSignUpStart(endpoint) {
   return { type: EMAIL_SIGN_UP_START, endpoint };
 }
 export function emailSignUpComplete(user, endpoint) {
-  console.log("This is the answer" + " " + user.user)
   return { type: EMAIL_SIGN_UP_COMPLETE, user, endpoint };
 }
 export function emailSignUpError(errors, endpoint) {

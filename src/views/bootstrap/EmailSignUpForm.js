@@ -124,7 +124,7 @@ class EmailSignUpForm extends React.Component {
     return (
       <form className='redux-auth email-sign-up-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <Input type="text"
                label="Nombre*"
                placeholder="Sr"
@@ -136,7 +136,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.first_name} />
         </div>
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <Input type="text"
                label="Apellidos*"
                placeholder="Envío"
@@ -148,7 +148,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.last_name} />
         </div>
-        <div className="col-md-12">
+        <div className="col-sm-12">
           <Input type="text"
                label="Correo electrónico*"
                placeholder="sr.envio@mienvio.mx"
@@ -160,7 +160,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.email} />
         </div>
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <Input type="text"
                label="Empresa"
                placeholder="Mi Envío"
@@ -172,7 +172,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.company_name} />
         </div>
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <Input type="tel"
                label="Telefono*"
                placeholder="123-456-7890"
@@ -184,7 +184,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.phone} />
         </div>
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <Input type="password"
                label="Contraseña*"
                placeholder="********"
@@ -196,7 +196,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.password} />
         </div>
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <Input type="password"
                label="Confirmar contraseña*"
                placeholder="repetir contraseña"
