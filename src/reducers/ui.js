@@ -36,9 +36,9 @@ const initialState = Immutable.fromJS({
 });
 
 export default createReducer(initialState, {
-  [emailSignInActions.EMAIL_SIGN_IN_COMPLETE]: state => state.set(
-    "emailSignInSuccessModalVisible", true
-  ),
+  // [emailSignInActions.EMAIL_SIGN_IN_COMPLETE]: state => state.set(
+  //   "emailSignInSuccessModalVisible", true
+  // ),
 
   [emailSignInActions.EMAIL_SIGN_IN_ERROR]: state => state.set(
     "emailSignInErrorModalVisible", true
@@ -84,7 +84,8 @@ export default createReducer(initialState, {
 
   [emailSignUpActions.EMAIL_SIGN_UP_COMPLETE]: (state, {user}) => state.merge({
     emailSignUpSuccessModalVisible: true,
-    emailSignUpAddress: user.email
+    emailSignUpAddress: user.email,
+    emailSignUpFirstName: user.first_name
   }),
 
   [emailSignUpActions.EMAIL_SIGN_UP_ERROR]: state => state.set(

@@ -10,11 +10,10 @@ class EmailSignUpSuccessModal extends React.Component {
         containerClass="email-sign-up-success-modal"
         show={this.props.show}
         closeAction={hideEmailSignUpSuccessModal}
-        title="Sign Up Success">
+        title="Regístro exitoso">
         <p>
-          A confirmation email was sent to your account
-          at {this.props.auth.getIn(["ui", "emailSignUpAddress"])}. Follow the
-          instructions in the email to complete registration.
+          ¡Hola <strong>{this.props.auth.getIn(["ui", "emailSignUpFirstName"])}</strong>!
+          Ya puedes iniciar sesión y empezar a disfrutar de todos los beneficios que tenemos para ti.
         </p>
       </Modal>
     );
