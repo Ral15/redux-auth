@@ -2,6 +2,7 @@ import * as C from "./constants";
 import extend from "extend";
 import fetch from "./fetch";
 import parseEndpointConfig from "./parse-endpoint-config";
+import {parseResponse} from "./handle-fetch-response";
 import {setEndpointKeys} from "../actions/configure";
 import {
   getApiUrl,
@@ -95,9 +96,16 @@ export function applyConfig({dispatch, endpoint={}, settings={}, reset=false}={}
 
   if (getCurrentSettings().initialCredentials) {
     // skip initial headers check (i.e. check was already done server-side)
-    let {user, headers} = getCurrentSettings().initialCredentials;
+    // let {user, headers} = getCurrentSettings().initialCredentials;
+    let headers = getCurrentSettings().initialCredentials
     persistData(C.SAVED_CREDS_KEY, headers);
-    return Promise.resolve(user);
+    // return Promise.resolve(user);
+    return fetch(`${getApiUrl(currentEndpointKey)}${currentEndpoint[currentEndpointKey].tokenValidationPath}`)
+    .then(response => {
+      return parseResponse(response,
+                            () => (removeData(C.SAVED_CREDS_KEY)))
+                            .then(({data}) => (data));
+    });
   } else if (savedCreds) {
     // verify session credentials with API
     return fetch(`${getApiUrl(currentEndpointKey)}${currentEndpoint[currentEndpointKey].tokenValidationPath}`)
