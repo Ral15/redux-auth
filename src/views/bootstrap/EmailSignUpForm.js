@@ -130,6 +130,7 @@ class EmailSignUpForm extends React.Component {
                placeholder="Sr"
                groupClassName="email-sign-up-first_name"
                disabled={disabled}
+               id="first-name-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "first_name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "first_name"])}
                onChange={this.handleInput.bind(this, "first_name")}
@@ -139,6 +140,7 @@ class EmailSignUpForm extends React.Component {
         <div className="col-sm-6">
           <Input type="text"
                label="Apellidos*"
+               id="last-name-signup"
                placeholder="Envío"
                groupClassName="email-sign-up-last_name"
                disabled={disabled}
@@ -154,6 +156,7 @@ class EmailSignUpForm extends React.Component {
                placeholder="sr.envio@mienvio.mx"
                groupClassName="email-sign-up-email"
                disabled={disabled}
+               id="email-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "email"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "email"])}
                onChange={this.handleInput.bind(this, "email")}
@@ -166,6 +169,7 @@ class EmailSignUpForm extends React.Component {
                placeholder="Mi Envío"
                groupClassName="email-sign-up-company_name"
                disabled={disabled}
+               id="company-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "company_name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "company_name"])}
                onChange={this.handleInput.bind(this, "company_name")}
@@ -178,6 +182,7 @@ class EmailSignUpForm extends React.Component {
                placeholder="123-456-7890"
                groupClassName="email-sign-up-phone"
                disabled={disabled}
+               id="phone-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "phone"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "phone"])}
                onChange={this.handleInput.bind(this, "phone")}
@@ -190,6 +195,7 @@ class EmailSignUpForm extends React.Component {
                placeholder="********"
                groupClassName="email-sign-up-password"
                disabled={disabled}
+               id="password-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password"])}
                onChange={this.handleInput.bind(this, "password")}
@@ -202,6 +208,7 @@ class EmailSignUpForm extends React.Component {
                placeholder="repetir contraseña"
                groupClassName="email-sign-up-password-confirmation"
                disabled={disabled}
+               id="passwordConfirm-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password_confirmation"])}
                onChange={this.handleInput.bind(this, "password_confirmation")}
@@ -214,6 +221,7 @@ class EmailSignUpForm extends React.Component {
                         className="email-sign-up-submit btn-block btn-danger"
                         icon={<Glyphicon glyph="send" />}
                         disabled={disabled}
+                        id="signup-btn"
                         disabledAux={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validSignUp")}
                         onClick={this.handleSubmit.bind(this)}
                         {...this.props.inputProps.submit}>
