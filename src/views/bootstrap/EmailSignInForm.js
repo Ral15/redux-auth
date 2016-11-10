@@ -107,9 +107,9 @@ class EmailSignInForm extends React.Component {
           <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                 type="submit"
                 icon={<Glyphicon glyph="log-in" />}
-                className='email-sign-in-submit btn-danger btn-block'
+                className='email-sign-in-submit btn-danger btn-block login-button-me'
                 disabled={disabled}
-                id="login-btn-form"
+                name="login-btn-form"
                 disabledAux={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validLogIn")}
                 onClick={this.handleSubmit.bind(this)}
                 {...this.props.inputProps.submit}>
