@@ -83,7 +83,7 @@ class EmailSignInForm extends React.Component {
                 label="Correo electrónico*"
                 placeholder="sr.envio@mienvio.mx"
                 disabled={disabled}
-                id="email-login"
+                name="email-login"
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
                 onChange={this.handleInput.bind(this, "email")}
