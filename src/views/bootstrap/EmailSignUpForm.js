@@ -124,7 +124,7 @@ class EmailSignUpForm extends React.Component {
     return (
       <form className='redux-auth email-sign-up-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <FormGroup className="col-sm- 6 email-sign-up-first_name">
+        <FormGroup className="col-sm-6 email-sign-up-first_name">
         <ControlLabel>Nombre*</ControlLabel>
           <Input type="text"
                placeholder="Sr"
