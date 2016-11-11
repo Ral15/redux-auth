@@ -73,15 +73,6 @@ class EmailSignInForm extends React.Component {
       this.props.auth.getIn(["user", "isSignedIn"]) ||
       this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])
     );
-
-
-            
-            // <FormControl type="text"  
-            //   className="" 
-            //   maxLength="30"
-            //   onBlur={this.handleBlur.bind(this)}
-            //   value={this.state.name}
-            //   onChange={this.handleInput.bind(this, 'email')} />
     return (
       <form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>

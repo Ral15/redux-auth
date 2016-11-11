@@ -3,7 +3,7 @@ import Input from "./Input";
 import ButtonLoader from "./ButtonLoader";
 import { emailSignUpFormUpdate, emailSignUp, emailSignUpFormUpdateValidation } from "../../actions/email-sign-up";
 import { connect } from "react-redux";
-import { Glyphicon } from "react-bootstrap";
+import { Glyphicon, FormGroup, ControlLabel } from "react-bootstrap";
 
 class EmailSignUpForm extends React.Component {
   static propTypes = {
@@ -124,11 +124,10 @@ class EmailSignUpForm extends React.Component {
     return (
       <form className='redux-auth email-sign-up-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <div className="col-sm-6">
+        <FormGroup className="col-sm- 6 email-sign-up-first_name">
+        <ControlLabel>Nombre*</ControlLabel>
           <Input type="text"
-               label="Nombre*"
                placeholder="Sr"
-               groupClassName="email-sign-up-first_name"
                disabled={disabled}
                id="first-name-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "first_name"])}
@@ -136,25 +135,23 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "first_name")}
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.first_name} />
-        </div>
-        <div className="col-sm-6">
+        </FormGroup>
+        <FormGroup className="col-sm-6 email-sign-up-last_name">
+        <ControlLabel>Apellidos*</ControlLabel>
           <Input type="text"
-               label="Apellidos*"
                id="last-name-signup"
                placeholder="Envío"
-               groupClassName="email-sign-up-last_name"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "last_name"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "last_name"])}
                onChange={this.handleInput.bind(this, "last_name")}
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.last_name} />
-        </div>
-        <div className="col-sm-12">
+        </FormGroup>
+        <FormGroup className="col-sm-12 email-sign-up-email">
+        <ControlLabel>Correo electrónico*</ControlLabel>
           <Input type="text"
-               label="Correo electrónico*"
                placeholder="sr.envio@mienvio.mx"
-               groupClassName="email-sign-up-email"
                disabled={disabled}
                id="email-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "email"])}
@@ -162,12 +159,11 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "email")}
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.email} />
-        </div>
-        <div className="col-sm-6">
+        </FormGroup>
+        <FormGroup className="col-sm-6 email-sign-up-company_name">
+        <ControlLabel>Empresa</ControlLabel>
           <Input type="text"
-               label="Empresa"
                placeholder="Mi Envío"
-               groupClassName="email-sign-up-company_name"
                disabled={disabled}
                id="company-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "company_name"])}
@@ -175,12 +171,11 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "company_name")}
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.company_name} />
-        </div>
-        <div className="col-sm-6">
+        </FormGroup>
+        <FormGroup className="col-sm-6 email-sign-up-phone">
+        <ControlLabel>Telefono*</ControlLabel>
           <Input type="tel"
-               label="Telefono*"
                placeholder="123-456-7890"
-               groupClassName="email-sign-up-phone"
                disabled={disabled}
                id="phone-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "phone"])}
@@ -188,12 +183,11 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "phone")}
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.phone} />
-        </div>
-        <div className="col-sm-6">
+        </FormGroup>
+        <FormGroup className="col-sm-6 email-sign-up-password">
+        <ControlLabel>Contraseña*</ControlLabel>
           <Input type="password"
-               label="Contraseña*"
                placeholder="********"
-               groupClassName="email-sign-up-password"
                disabled={disabled}
                id="password-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])}
@@ -201,12 +195,11 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "password")}
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.password} />
-        </div>
-        <div className="col-sm-6">
+        </FormGroup>
+        <FormGroup className="col-sm-6 email-sign-up-password-confirmation">
+        <ControlLabel>Confirmar contraseña*</ControlLabel>
           <Input type="password"
-               label="Confirmar contraseña*"
                placeholder="repetir contraseña"
-               groupClassName="email-sign-up-password-confirmation"
                disabled={disabled}
                id="passwordConfirm-signup"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
@@ -214,7 +207,7 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "password_confirmation")}
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.password_confirmation} />
-        </div>
+        </FormGroup>
         <div className="col-xs-12">
           <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
                         type="submit"
