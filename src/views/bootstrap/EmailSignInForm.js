@@ -2,7 +2,7 @@ import React, {PropTypes} from "react";
 import ButtonLoader from "./ButtonLoader";
 import Input from "./Input";
 import { emailSignInFormUpdate, emailSignIn, emailSignInFormUpdateValidation } from "../../actions/email-sign-in";
-import { Glyphicon } from "react-bootstrap";
+import { Glyphicon, FormGroup } from "react-bootstrap";
 import { connect } from "react-redux";
 
 class EmailSignInForm extends React.Component {
@@ -74,22 +74,29 @@ class EmailSignInForm extends React.Component {
       this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])
     );
 
+
+            
+            // <FormControl type="text"  
+            //   className="" 
+            //   maxLength="30"
+            //   onBlur={this.handleBlur.bind(this)}
+            //   value={this.state.name}
+            //   onChange={this.handleInput.bind(this, 'email')} />
     return (
       <form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <div className="col-md-10 col-md-offset-1">
+        <FormGroup className="col-md-10 col-md-offset-1 email-sign-in-email">
+        <ControlLabel>Correo electrónico*</ControlLabel>
           <Input type="text"
-                groupClassName="email-sign-in-email"
-                label="Correo electrónico*"
                 placeholder="sr.envio@mienvio.mx"
                 disabled={disabled}
-                name="email-login"
+                id="email-login"
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
                 onChange={this.handleInput.bind(this, "email")}
                 onBlur={this.handleBlur.bind(this)}
                 {...this.props.inputProps.email} />
-        </div>
+        </FormGroup>
         <div className="col-md-10 col-md-offset-1">
           <Input type="password"
                 label="Contraseña*"

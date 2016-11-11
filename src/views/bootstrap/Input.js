@@ -46,11 +46,18 @@ class AuthInput extends React.Component {
     }
   }
 
+
+  // <FormControl type="text"  
+  //             className="" 
+  //             maxLength="30"
+  //             onBlur={this.handleBlur.bind(this)}
+  //             value={this.state.name}
+  //             onChange={this.handleInput.bind(this, 'email')} />
+
   render () {
     return (
       <div>
-        <Input {...this.props}
-              id="email-login"
+        <FormControl {...this.props}
                bsStyle={(this.props.errors.size) ? "error" : null}
                onChange={this.handleInput.bind(this)} />
         {this.renderErrorList()}
