@@ -97,10 +97,9 @@ class EmailSignInForm extends React.Component {
                 onBlur={this.handleBlur.bind(this)}
                 {...this.props.inputProps.email} />
         </FormGroup>
-        <div className="col-md-10 col-md-offset-1">
+        <FormGroup className="col-md-10 col-md-offset-1 email-sign-in-password">
+        <ControlLabel>Contraseña*</ControlLabel>
           <Input type="password"
-                label="Contraseña*"
-                groupClassName="email-sign-in-password"
                 placeholder="********"
                 id="email-password"
                 disabled={disabled}
@@ -109,7 +108,7 @@ class EmailSignInForm extends React.Component {
                 onChange={this.handleInput.bind(this, "password")}
                 onBlur={this.handleBlur.bind(this)}
                 {...this.props.inputProps.password} />
-        </div>
+        </FormGroup>
         <div className="col-md-10 col-md-offset-1">
           <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                 type="submit"
