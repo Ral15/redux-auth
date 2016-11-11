@@ -50,6 +50,7 @@ class AuthInput extends React.Component {
     return (
       <div>
         <Input {...this.props}
+              id="email-login"
                bsStyle={(this.props.errors.size) ? "error" : null}
                onChange={this.handleInput.bind(this)} />
         {this.renderErrorList()}
