@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import { Input, Glyphicon } from "react-bootstrap";
+import { Input, Glyphicon, FormControl } from "react-bootstrap";
 import Immutable from "immutable";
 
 class AuthInput extends React.Component {
