@@ -13,9 +13,6 @@ class EmailSignUpSuccessModal extends React.Component {
         title="Regístro exitoso">
         <p>
           Ya puedes iniciar sesión y empezar a disfrutar de todos los beneficios que tenemos para ti.
-          // A confirmation email was sent to your account
-          // at {this.props.auth.getIn(["ui", "emailSignUpAddress"])}. Follow the
-          // instructions in the email to complete registration.
         </p>
       </Modal>
     );
