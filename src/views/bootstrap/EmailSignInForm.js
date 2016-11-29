@@ -51,11 +51,6 @@ class EmailSignInForm extends React.Component {
     }
     
     this.props.dispatch(emailSignInFormUpdate(this.getEndpoint(), key, val));
-    if (this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validPass") && this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validUser")) {
-      this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", true));
-    }
-    else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", false));
-
   }
 
   handleBlur(event) {
@@ -90,7 +85,7 @@ class EmailSignInForm extends React.Component {
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
                 onChange={this.handleInput.bind(this, "email")}
-                onBlur={this.handleBlur.bind(this)}
+                onInput={this.handleBlur.bind(this)}
                 {...this.props.inputProps.email} />
         </FormGroup>
         <FormGroup className="col-md-10 col-md-offset-1 email-sign-in-password">
@@ -102,7 +97,7 @@ class EmailSignInForm extends React.Component {
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"])}
                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "password"])}
                 onChange={this.handleInput.bind(this, "password")}
-                onBlur={this.handleBlur.bind(this)}
+                onInput={this.handleBlur.bind(this)}
                 {...this.props.inputProps.password} />
         </FormGroup>
         <div className="col-md-10 col-md-offset-1">
