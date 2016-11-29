@@ -51,6 +51,11 @@ class EmailSignInForm extends React.Component {
     }
     
     this.props.dispatch(emailSignInFormUpdate(this.getEndpoint(), key, val));
+    if (this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validPass") && this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validUser")) {
+      this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", true));
+    }
+    else this.props.dispatch(emailSignInFormUpdateValidation(this.getEndpoint(), "validLogIn", false));
+
   }
 
   handleBlur(event) {
@@ -107,6 +112,7 @@ class EmailSignInForm extends React.Component {
                 className='email-sign-in-submit btn-danger btn-block login-button-me'
                 disabled={disabled}
                 name="login-btn-form"
+                disabledAux={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validLogIn")}
                 onClick={this.handleSubmit.bind(this)}
                 {...this.props.inputProps.submit}>
             Inicia sesión
@@ -116,5 +122,5 @@ class EmailSignInForm extends React.Component {
     );
   }
 }
-                {/*disabledAux={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validLogIn")}*/}
+
 export default connect(({auth}) => ({auth}))(EmailSignInForm);
