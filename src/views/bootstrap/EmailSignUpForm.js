@@ -89,6 +89,21 @@ class EmailSignUpForm extends React.Component {
       if (val == this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])) this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validConfirmPass", true));
       else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validConfirmPass", false));
     }
+
+    //validation
+    const v = this.props.auth
+    if (v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validFirstName") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validLastName") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validEmail") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPhone") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPass") &&
+        v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validConfirmPass")
+        ){
+        this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", true));
+    }
+    else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", false));
+
+    //key
     this.props.dispatch(emailSignUpFormUpdate(this.getEndpoint(), key, val));
   }
 
@@ -113,6 +128,7 @@ class EmailSignUpForm extends React.Component {
         this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", true));
     }
     else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", false));
+
   }
 
   validationFirstName(event) {
