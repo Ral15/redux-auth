@@ -104,7 +104,7 @@ class EmailSignUpForm extends React.Component {
         this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", true));
     }
     else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", false));
-
+    console.log(this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validSignUp"))
     //key
     this.props.dispatch(emailSignUpFormUpdate(this.getEndpoint(), key, val));
   }
