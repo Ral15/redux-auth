@@ -115,6 +115,42 @@ class EmailSignUpForm extends React.Component {
     else this.props.dispatch(emailSignUpFormUpdateValidation(this.getEndpoint(), "validSignUp", false));
   }
 
+  validationFirstName(event) {
+    const isValid = this.props.auth
+    if(isValid.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validFirstName")) return 'success'
+    return 'error'
+  }
+
+  validationLastName(event) {
+    const isValid = this.props.auth
+    if(isValid.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validLastName")) return 'success'
+    return 'error'
+  }
+
+  validationEmail(event) {
+    const isValid = this.props.auth
+    if(isValid.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validEmail")) return 'success'
+    return 'error'
+  }
+
+  validationPhone(event) {
+    const isValid = this.props.auth
+    if(isValid.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPhone")) return 'success'
+    return 'error'
+  }
+
+  validationPass(event) {
+    const isValid = this.props.auth
+    if(isValid.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validPass")) return 'success'
+    return 'error'
+  }
+
+  validationPassConfirm(event) {
+    const isValid = this.props.auth
+    if(isValid.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validConfirmPass")) return 'success'
+    return 'error'
+  }
+  
   render () {
     let disabled = (
       this.props.auth.getIn(["user", "isSignedIn"]) ||
@@ -124,7 +160,7 @@ class EmailSignUpForm extends React.Component {
     return (
       <form className='redux-auth email-sign-up-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <FormGroup className="col-sm-6 email-sign-up-first_name">
+        <FormGroup className="col-sm-6 email-sign-up-first_name" validationState={this.validationFirstName()} >
         <ControlLabel>Nombre*</ControlLabel>
           <Input type="text"
                placeholder="Sr"
@@ -136,7 +172,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.first_name} />
         </FormGroup>
-        <FormGroup className="col-sm-6 email-sign-up-last_name">
+        <FormGroup className="col-sm-6 email-sign-up-last_name" validationState={this.validationLastName()} >
         <ControlLabel>Apellidos*</ControlLabel>
           <Input type="text"
                id="last-name-signup"
@@ -148,7 +184,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.last_name} />
         </FormGroup>
-        <FormGroup className="col-sm-12 email-sign-up-email">
+        <FormGroup className="col-sm-12 email-sign-up-email" validationState={this.validationEmail()} >
         <ControlLabel>Correo electrónico*</ControlLabel>
           <Input type="text"
                placeholder="sr.envio@mienvio.mx"
@@ -172,7 +208,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.company_name} />
         </FormGroup>
-        <FormGroup className="col-sm-6 email-sign-up-phone">
+        <FormGroup className="col-sm-6 email-sign-up-phone" validationState={this.validationPhone()} >
         <ControlLabel>Telefono*</ControlLabel>
           <Input type="tel"
                placeholder="123-456-7890"
@@ -184,7 +220,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.phone} />
         </FormGroup>
-        <FormGroup className="col-sm-6 email-sign-up-password">
+        <FormGroup className="col-sm-6 email-sign-up-password" validationState={this.validationPass()} >
         <ControlLabel>Contraseña*</ControlLabel>
           <Input type="password"
                placeholder="********"
@@ -196,7 +232,7 @@ class EmailSignUpForm extends React.Component {
                onBlur={this.handleBlur.bind(this)}
                {...this.props.inputProps.password} />
         </FormGroup>
-        <FormGroup className="col-sm-6 email-sign-up-password-confirmation">
+      <FormGroup className="col-sm-6 email-sign-up-password-confirmation" validationState={this.validationPassConfirm()} >
         <ControlLabel>Confirmar contraseña*</ControlLabel>
           <Input type="password"
                placeholder="repetir contraseña"
