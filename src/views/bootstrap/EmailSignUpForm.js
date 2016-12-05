@@ -150,7 +150,7 @@ class EmailSignUpForm extends React.Component {
     if(isValid.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validConfirmPass")) return 'success'
     return 'error'
   }
-  
+
   render () {
     let disabled = (
       this.props.auth.getIn(["user", "isSignedIn"]) ||
@@ -214,6 +214,7 @@ class EmailSignUpForm extends React.Component {
                placeholder="123-456-7890"
                disabled={disabled}
                id="phone-signup"
+               maxLength="10"
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "phone"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "phone"])}
                onChange={this.handleInput.bind(this, "phone")}
