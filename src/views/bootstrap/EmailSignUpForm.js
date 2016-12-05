@@ -92,6 +92,8 @@ class EmailSignUpForm extends React.Component {
 
     //validation
     const v = this.props.auth
+    console.log('va a ser v: ')
+    console.log(v)
     if (v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validFirstName") &&
         v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validLastName") &&
         v.getIn(["emailSignUp", this.getEndpoint(), "validate"]).get("validEmail") &&
