@@ -85,6 +85,7 @@ class EmailSignInForm extends React.Component {
                 placeholder="Correo electrónico"
                 disabled={disabled}
                 id="email-login"
+                className="input-user"
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
                 onChange={this.handleInput.bind(this, "email")}
@@ -96,6 +97,7 @@ class EmailSignInForm extends React.Component {
                 placeholder="Contraseña"
                 id="email-password"
                 disabled={disabled}
+                className="input-user"
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"])}
                 errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "password"])}
                 onChange={this.handleInput.bind(this, "password")}
