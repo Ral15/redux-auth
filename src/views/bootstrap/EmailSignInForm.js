@@ -81,7 +81,6 @@ class EmailSignInForm extends React.Component {
       <form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
         <FormGroup className="col-xs-12 email-sign-in-email">
-        <ControlLabel>Correo electrónico*</ControlLabel>
           <Input type="text"
                 placeholder="Correo electrónico"
                 disabled={disabled}
@@ -93,7 +92,6 @@ class EmailSignInForm extends React.Component {
                 {...this.props.inputProps.email} />
         </FormGroup>
         <FormGroup className="col-xs-12 email-sign-in-password">
-        <ControlLabel>Contraseña*</ControlLabel>
           <Input type="password"
                 placeholder="Contraseña"
                 id="email-password"
