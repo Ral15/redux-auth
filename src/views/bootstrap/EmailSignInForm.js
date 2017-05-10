@@ -104,21 +104,22 @@ class EmailSignInForm extends React.Component {
                 onBlur={this.handleBlur.bind(this)}
                 {...this.props.inputProps.password} />
         </FormGroup>
-        <div>
-          <div className="col-xs-6">
+        <div className="col-xs-12" id="submit-login-section">
+          <div>
             <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                   type="submit"
                   icon={<Glyphicon glyph="menu-right" />}
                   className='email-sign-in-submit btn-danger btn-block login-button-me'
                   disabled={disabled}
                   name="login-btn-form"
+                  id="submit-button-login"
                   disabledAux={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validLogIn")}
                   onClick={this.handleSubmit.bind(this)}
                   {...this.props.inputProps.submit}>
               INGRESAR
             </ButtonLoader>
           </div>
-          <div className="col-xs-6">
+          <div id="login-options">
             <p>¿No tienes cuenta?</p>
             <p>¿Olvidaste tu contraseña?</p>
           </div>  
