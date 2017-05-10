@@ -80,10 +80,10 @@ class EmailSignInForm extends React.Component {
     return (
       <form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
-        <FormGroup className="col-md-10 col-md-offset-1 email-sign-in-email">
+        <FormGroup className="col-xs-12 email-sign-in-email">
         <ControlLabel>Correo electrónico*</ControlLabel>
           <Input type="text"
-                placeholder="sr.envio@mienvio.mx"
+                placeholder="Correo electrónico"
                 disabled={disabled}
                 id="email-login"
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
@@ -92,10 +92,10 @@ class EmailSignInForm extends React.Component {
                 onBlur={this.handleBlur.bind(this)}
                 {...this.props.inputProps.email} />
         </FormGroup>
-        <FormGroup className="col-md-10 col-md-offset-1 email-sign-in-password">
+        <FormGroup className="col-xs-12 email-sign-in-password">
         <ControlLabel>Contraseña*</ControlLabel>
           <Input type="password"
-                placeholder="********"
+                placeholder="Contraseña"
                 id="email-password"
                 disabled={disabled}
                 value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"])}
@@ -104,19 +104,23 @@ class EmailSignInForm extends React.Component {
                 onBlur={this.handleBlur.bind(this)}
                 {...this.props.inputProps.password} />
         </FormGroup>
-        <div className="col-md-10 col-md-offset-1">
+        <div className="col-xs-6">
           <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                 type="submit"
-                icon={<Glyphicon glyph="log-in" />}
+                icon={<Glyphicon glyph="menu-right" />}
                 className='email-sign-in-submit btn-danger btn-block login-button-me'
                 disabled={disabled}
                 name="login-btn-form"
                 disabledAux={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validLogIn")}
                 onClick={this.handleSubmit.bind(this)}
                 {...this.props.inputProps.submit}>
-            Inicia sesión
+            INGRESAR
           </ButtonLoader>
         </div>
+        <div className="col-xs-6">
+          <p>¿No tienes cuenta?</p>
+          <p>¿Olvidaste tu contraseña?</p>
+        </div>  
       </form>
     );
   }
