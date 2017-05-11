@@ -4,6 +4,7 @@ import Modal from "./Modal";
 
 class EmailSignInErrorModal extends React.Component {
   render () {
+    console.log('ni le da aqui')
     return (
       <Modal
         show={this.props.show}
