@@ -67,6 +67,7 @@ class ButtonLoader extends React.Component {
         disabled={this.props.disabled || this.props.loading || !this.props.disabledAux }
         bsStyle={this.props.bsStyle}
         className={this.props.className}
+        id={this.props.id}
         type={this.props.type}
         style={this.props.style}
         bsSize={this.props.bsSize}>
