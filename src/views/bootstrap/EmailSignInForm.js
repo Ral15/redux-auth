@@ -120,8 +120,8 @@ class EmailSignInForm extends React.Component {
             </ButtonLoader>
           </div>
           <div id="login-options">
-            <p>¿No tienes cuenta?</p>
-            <p>¿Olvidaste tu contraseña?</p>
+            <a href="/registrar"><p style={{fontSize: "16px", color: "#fe027c"}}>¿No tienes cuenta?</p></a>
+            <a href="/contrasena"><p style={{fontSize: "16px", color: "#fe027c"}}>¿Olvidaste tu contraseña?</p></a>
           </div>  
         </div>
       </form>
