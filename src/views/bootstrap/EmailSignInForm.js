@@ -113,7 +113,6 @@ class EmailSignInForm extends React.Component {
                   disabled={disabled}
                   name="login-btn-form"
                   id="submit-button-login"
-                  disabledAux={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "validate"]).get("validLogIn")}
                   onClick={this.handleSubmit.bind(this)}
                   {...this.props.inputProps.submit}>
               INGRESAR
