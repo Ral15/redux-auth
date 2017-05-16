@@ -58,6 +58,7 @@ class AuthInput extends React.Component {
     return (
       <div>
         <FormControl {...this.props}
+                required
                bsStyle={(this.props.errors.size) ? "error" : null}
                onChange={this.handleInput.bind(this)} />
         {this.renderErrorList()}
